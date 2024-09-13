@@ -1,6 +1,8 @@
 require_relative 'guess'
 require_relative '5_letter_words'
 
+TOTAL_ROUNDS = 6
+
 def word
   @word ||= DICTIONARY.sample
 end
@@ -21,7 +23,7 @@ def end_round
   if @guess.valid
     puts 'Congrats! You won the game!'
     exit
-  elsif @round == 5
+  elsif @round == TOTAL_ROUNDS
     puts 'You lost the game :('
     puts "The word is #{word}"
     exit
@@ -34,7 +36,7 @@ end
 def execute!
   start_game
   
-  while @round <= 5
+  while @round <= TOTAL_ROUNDS
     get_guess
     @guess.validate
     @guess.print_word
